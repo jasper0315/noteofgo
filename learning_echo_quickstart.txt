@@ -1,0 +1,324 @@
+<words>
+JSON = a lightweight data interchange format that is easy for humans to read and write and easy for machines to parse and generate.
+XML  = is a markup language that defines a set of rules for encoding structured data in a human-readable and machine-readable format. 
+Routing = the process of determining how an incoming HTTP request should be handled by a web server or web application. 
+
+
+
+<INDEX>
+[Quick Start]
+Installation
+Hello, World!
+Routing
+Path Parameters
+Query Parameters
+Form application/x-www-form-urlencoded
+Form multipart/form-data
+Handling Request
+Static Content
+Template Rendering
+Middleware
+
+
+          
+[Quick Start]
+<Installation>
+Requirements
+To install Echo Go 1.13 or higher is required. Go 1.12 has limited support and some middlewares will not be available. Make sure your project folder is outside your $GOPATH.
+// GOPATH = a variable that defines the root of your workspace
+
+$ mkdir myapp && cd myapp              // make your directory
+$ go mod init myapp                    // install "go module"
+$ go get github.com/labstack/echo/v4   // download echo
+
+(short-cut var)
+If you are working with Go v1.14 or earlier use:
+
+$ GO111MODULE=on go get github.com/labstack/echo/v4
+
+
+
+<Hello, World!>
+it is the method for creating server.go
+
+package main
+
+import (
+    "net/http"
+    
+    "github.com/labstack/echo/v4"
+)
+
+func main() {
+    e := echo.New()
+    e.GET("/", func(c echo.Context) error {
+        return c.String(http.StatusOK, "Hello, World!")
+    })
+    e.Logger.Fatal(e.Start(":1323"))
+}
+
+// When you run on a local development environment(LDE), you have to run "go get "http address" on your terminal or command prompt.
+
+
+
+<Routing>
+it typically refers to the process of defining how incoming HTTP requests should be hadled by your web application.
+it determines which code should execute based on the URL or path of the incoming request.
+
+you can use below:
+e.POST("/users", saveUser)
+//e.Post is a method used to define a route that handles HTTP POST requests. It's similar to e.GET, which is used to define routes for handling HTTP GET requests, but it's specific to POST requests.
+//HTTP POST is one of the HTTP request methods used in the HTTP. Unlike HTTP GET, HTTP POST is used for sending data to a server to create, update, or modify a resource on the server.
+e.GET("/users/:id", getUser)
+//is a method used to define a route for handing HTTP GET requests.Unlike HTTP GET, which is primarily used for retrieving data from a server, HTTP POST is used for sending data to a server to create, update, or modify a resource on the server.
+// HTTP GET is one of the HTTP request methods used in the Hypertext Transfer Protocol(HTTP), the foundation of data communication on the World Wide Web. HTTP GET is a simple and widely used method for requesting data from a specified resource, typically a web server.
+e.PUT("/users/:id", updateUser)
+// is a method used to define a route for handling HTTP PUT requests.
+/ HTTP PUT is used to request that a resource on the server be updated or replaced with the data provided in the request. It is often associate with updating an existing resource identified by a specific URL.
+e.DELETE("/users/:id", deleteUser)
+
+(how to use)
+package main
+
+import (
+    "net/http"
+
+    "github.com/labstack/echo/v4"
+)
+
+func main() {
+    e := echo.New()
+
+    e.GET("/", func(c echo.Context) error {
+        return c.String(http.StatusOK, "Hello, World!")
+    })
+
+    e.GET("/users/:id", func(c echo.Context) error {
+        userID := c.Param("id")
+        return c.String(http.StatusOK, "User ID: "+userID)
+    })
+
+    e.Start(":8080")
+}
+
+
+
+<Path Parameters>
+// are placeholders within a URL's path that capture and extract specific values from the URL.
+They are a way to make parts of a URL dynamic, allowing you to pass data or parameters to a web server or web application as part of the URL itself.
+
+(how to use)
+package main
+
+import (
+    "net/http"
+
+    "github.com/labstack/echo/v4"
+)
+
+func main() {
+    // Create an Echo instance
+    e := echo.New()
+
+    // Define a route with a path parameter ":id"
+    e.GET("/users/:id", func(c echo.Context) error {
+        // Retrieve the captured path parameter ":id"
+        userID := c.Param("id")
+
+        // Use the "userID" in your application logic
+        // For example, fetch user data based on the ID
+        // ...
+
+        return c.String(http.StatusOK, "User ID: "+userID)
+    })
+
+    // Start the Echo server
+    e.Start(":8080")
+}
+
+
+
+<Query Parameters>
+// are a way to pass data to a web server or web application as key-value pairs appended to the end of a URL. 
+They are typically used to provide additional information to the server about the nature of the request or to filter, sort, or customize the response.
+
+(how to use)
+*ampersand = the sign &, used for "and"
+//Using query parameters in a URL is straightforward, whether you're making a request or handing one in a web server or web application. Here's how to use query parameters:
+
+package main
+
+import (
+    "net/http"
+
+    "github.com/labstack/echo/v4"
+)
+
+func main() {
+    e := echo.New()
+
+    e.GET("/articles", func(c echo.Context) error {
+        // Get query parameters from the request
+        query := c.QueryParam("q")
+        page := c.QueryParam("page")
+
+        // Use the query and page parameters in your application logic
+        // ...
+
+        // Return a response
+        return c.String(http.StatusOK, "Search query: "+query+", Page: "+page)
+    })
+
+    e.Start(":8080")
+}
+
+
+
+<Form application/x-www-form-urlencoded>
+// "application/x-www-form-urlencoded" is a media type or content type used in the context of HTTP requests and responses to encode form data when it is submitted from an HTML form to a web server or when it is included in the body of an HTTP request. 
+This encoding is a standard way to package form data for transmission over the web.
+
+(how to use)
+package main
+
+import (
+	"net/http"
+
+	"github.com/labstack/echo/v4"
+)
+
+func main() {
+	e := echo.New()
+
+	e.POST("/save", save)
+	e.Start(":8080")
+}
+
+func save (c echo.Context) error {
+	name := c.FormValue("name")
+	email := c.FormValue("email")
+
+	return c.String(http.StatusOK, "Name: "+name+", Email: "+email)
+}
+
+
+
+<Form multipart/form-data>
+// "multipart/form-data" is a media type or content type used in the context of HTTP requests and responses to transmit binary or textual data, typically files, from a client to a server or between various parts of a web application.
+This encoding type is specifically designed for sending form data that includes files, such as images, documents, or any binary data, to a web server.
+
+(how to use)
+func save(c echo.Context) error {
+    // Get name
+    name := c.FormValue("name")
+    // Get avatar
+    avatar, err := c.FormFile("avatar")
+    if err != nil {
+        return err
+    }
+ 
+    // Source
+    src, err := avatar.Open()
+    if err != nil {
+        return err
+    }
+    defer src.Close()
+ 
+    // Destination
+    dst, err := os.Create(avatar.Filename)
+    if err != nil {
+        return err
+    }
+    defer dst.Close()
+ 
+    // Copy
+    if _, err = io.Copy(dst, src); err != nil {
+        return err
+    }
+
+    return c.HTML(http.StatusOK, "<b>Thank you! " + name + "</b>")
+}
+
+// Can you follow the steps below before you run the code above?
+1. Import Dependencies
+2. Create an echo server
+
+
+
+<Handling Request>
+// It refers to the process of receiving, processing, and responding to HTTP requests made by clients (such as web browsers or other applications) to a web server or web application.
+Handling requests is a fundamental part of building web services, websites, and web applications. Here's how it works
+
+(how to us)
+type User struct {
+    Name  string `json:"name" xml:"name" form:"name" query:"name"`
+    Email string `json:"email" xml:"email" form:"email" query:"email"`
+}
+
+e.POST("/users", func(c echo.Context) error {
+    u := new(User)
+    if err := c.Bind(u); err != nil {
+        return err
+    }
+    return c.JSON(http.StatusCreated, u)
+    // or
+    // return c.XML(http.StatusCreated, u)
+})
+
+
+
+<Static Content>
+// "static content" typically refers to files that are served directly to web clients without any processing by a web server or web application.
+These files are typically fixed and don't change dynamically in response to user interactions or requests.
+
+Echo#Static(prefix, root string) registers a new route with path prefix to serve static files from the provided root directory.
+
+Usage 1
+
+e := echo.New()
+e.Static("/static", "assets")
+
+Example above will serve any file from the assets directory for path /static/*. For example, a request to /static/js/main.js will fetch and serve assets/js/main.js file.
+
+Usage 2
+
+e := echo.New()
+e.Static("/", "assets")
+
+Example above will serve any file from the assets directory for path /*. For example, a request to /js/main.js will fetch and serve assets/js/main.js file.
+
+
+
+[Temprate Rendering]
+Rendering = refers to the process of generating and displaying the final output (usually HTML, but it can also be XML, JSON, or other formats) that a web browser or client sees and interacts with.
+It involves assembling and formatting data, content, and templates to produce a visually appealing and functional web page or user interface.
+
+<Middleware>
+//refers to software components or functions that sit between a web application's server and client and play a critical role in processing requests and responses.
+Middleware acts as an intermediary layer, enabling developers to add functionality, perform tasks, and manipulate data as requests and responses pass through it.
+It's a fundamental concept in building web applications, and it provides a way to encapsulate various behaviors and functionalities in a modular and reusable manner.
+
+(how to use)
+// Root level middleware
+e.Use(middleware.Logger())
+e.Use(middleware.Recover())
+
+// Group level middleware
+g := e.Group("/admin")
+g.Use(middleware.BasicAuth(func(username, password string, c echo.Context) (bool, error) {
+  if username == "joe" && password == "secret" {
+    return true, nil
+  }
+  return false, nil
+}))
+
+// Route level middleware
+track := func(next echo.HandlerFunc) echo.HandlerFunc {
+    return func(c echo.Context) error {
+        println("request to /users")
+        return next(c)
+    }
+}
+e.GET("/users", func(c echo.Context) error {
+    return c.String(http.StatusOK, "/users")
+}, track)

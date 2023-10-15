@@ -1,0 +1,66 @@
+<words>
+debugging =  the process of identifying, analyzing, and fixing errors, bugs, or unexpected behaviors in a computer program. 
+
+
+
+<Debug>
+Echo#Debug can be used to enable / disable debug mode. Debug mode sets the log level to DEBUG.
+(how to use)
+1. Import Echo
+2. Enable Debugging:
+    (about the code)
+    In your main function or application setup code, enable debugging by using the Debug function on your Echo instance (e). This function should be called before starting the server.
+        e := echo.New()
+
+        // Enable debug mode (for development/debugging only)
+        e.Debug = true
+
+        // Define your routes and middleware here
+
+        // Start the Echo server
+        e.Start(":8080")
+
+        By setting e.Debug to true, you enable debugging mode.
+3. Use Error Middleware (Optional):
+    In addition to enabling debugging, you can also set up an error handling middleware to capture and log errors. This step is optional but can be very useful for debugging and monitoring. 
+    For example:
+    (about the code)
+    // Error middleware
+    e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
+        return func(c echo.Context) error {
+            err := next(c)
+            if err != nil {
+                // Log the error (you can use your preferred logging library)
+                log.Printf("Error: %v", err)
+            }
+            return err
+        }
+    })
+
+    This middleware captures errors that occur during request processing and logs them. You can customize this middleware to suit your logging needs.
+4. Run the Application:
+    With debugging enabled, you can run your Echo application as usual:
+    (about the code)
+    go run main.go
+    The server will now provide more detailed error information when issues occur during request processing, making it easier to diagnose and fix problems during development.
+5. Testing Debugging:
+    To test the debugging features, you can intentionally trigger errors in your application code. For example, by using invalid input or forcing a panic. When an error occurs, Echo will provide a detailed error response with information about the error location and stack trace.
+    Remember to disable debugging (e.Debug = false) when deploying your application to a production environment to prevent sensitive information from being exposed to users. Debugging information should be used exclusively for development and debugging purposes.
+
+
+
+<Logging>
+    The default format for logging is JSON, which can be changed by modifying the header.
+
+    [Log Header]
+    Echo#Logger.SetHeader(string) can be used to set the header for the logger. Default value:
+        {"time":"${time_rfc3339_nano}","level":"${level}","prefix":"${prefix}","file":"${short_file}","line":"${line}"}
+
+    (Example)
+    import "github.com/labstack/gommon/log"
+
+    /* ... */
+
+    if l, ok := e.Logger.(*log.Logger); ok {
+    l.SetHeader("${time_rfc3339} ${level}")
+    }
