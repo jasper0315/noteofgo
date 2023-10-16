@@ -1,4 +1,4 @@
-<Go言語とは>
+#Go言語とは
     Google が開発したプログラミング言語です。「Go言語」や「Golang」と表記されます。
     UNIX、B言語(C言語の元)、UTF-8の開発者ケン・トンプソンや、UNIX、Plan 9、UTF-8の開発者ロブ・パイクによって設計されました。
     静的型付け、メモリ安全性、ガベージコレクションを備えるコンパイル言語です。
@@ -6,7 +6,7 @@
     メモリ破壊が無く、並行処理を得意とする、進化したC言語という側面があります。
     Linux、Mac OS X、Windows、Android、iOS で動作します。
 
-<Hello world>
+#Hello world
     プログラムの拡張子は .go とします。プログラムは main パッケージの main 関数から実行されます。
     
     (how to write)
@@ -31,7 +31,7 @@
     //ソースを標準のコーディングスタイルに整形するには gofmt を使用します。標準スタイルでは、インデントはスペースではなくタブ文字を使用します。
         $ gofmt sample.go
 
-<Print・Println・Printf>
+#Print・Println・Printf#
     fmt.Print() は引数を文字列として出力します。fmt.Println() は引数の間にスペースを入れ、最後に改行文字 "\n" を出力します。fmt.Printf() は %d (数値) や %s (文字列) などのフォーマットを指定して引数を出力することができます。
 
     (how to write)
@@ -503,12 +503,19 @@
             //Can you read the artivcle below, please?
             https://recursionist.io/learn/languages/go/oop/interface
 
-
     [article]
         「GoのInterfaceがわからない人へ」
         https://qiita.com/rtok/items/46eadbf7b0b7a1b0eb08
         「インターフェースの実装パターン #golang」
         https://qiita.com/tenntenn/items/eac962a49c56b2b15ee8
+        [word on this article]
+        Receiver 
+            = a parameter associated with a method of a struct type.
+            The receiver is a way of binding a function to a specific struct type, and it determines on which type or value the method operates.
+            Receivers enable you to define methods for your custom struct types.
+        ServeHTTP method
+            = a special method associated with types that implement the http.Handler interface.
+            This method is crucial for creating custom HTTP handlers in web applications built with the Go standard library's net/http package.
 
     インタフェース(interface) はポリモーフィズムを実装するための機能です。下記の例では構造体 Person も、構造体 Book も ToString() というメソッドと PrintOut() というメソッドを実装しています。
         (how to write)
@@ -633,35 +640,36 @@
         tel := p1["address"].(dict)["tel"]	// anyをdictに変換してから参照
 
 <ポインタ(pointer)>
-ポインタとは、変数が格納されているメモリのアドレスです。C言語と同様に、オブジェクトのポインタを参照するには & を、ポインタの中身を参照するには * を用います。
+    ポインタとは、変数が格納されているメモリのアドレスです。C言語と同様に、オブジェクトのポインタを参照するには & を、ポインタの中身を参照するには * を用います。
+        (how to write)
+        var a1 int		// int型変数a1を定義
+        var p1 *int;		// intへのポインタ変数p1を定義
 
-var a1 int		// int型変数a1を定義
-var p1 *int;		// intへのポインタ変数p1を定義
+        p1 = &a1		// p1にa1のポインタを設定
+        *p1 = 123		// ポインタの中身(つまりa1)に123を代入
+        fmt.Println(a1)	// => 123
+    変数の値を渡すことを「値渡し」、変数のポインタを渡すことを「参照渡し」と呼びます。値渡しでは値のコピーしか渡していないので元の変数を変更することはできませんが、ポインタ渡しであれば関数の中で変数の値を変更することが可能となります。
+    (how to write)
+    func main() {
+        var a1 int = 123
+        var a2 int = 123
+        fn(a1, &a2)		// a1は値渡し、a2は参照渡し
+        fmt.Println(a1, a2)	// => 123 456
+    }
 
-p1 = &a1		// p1にa1のポインタを設定
-*p1 = 123		// ポインタの中身(つまりa1)に123を代入
-fmt.Println(a1)	// => 123
-変数の値を渡すことを「値渡し」、変数のポインタを渡すことを「参照渡し」と呼びます。値渡しでは値のコピーしか渡していないので元の変数を変更することはできませんが、ポインタ渡しであれば関数の中で変数の値を変更することが可能となります。
+    func fn(b1 int, b2 *int) {
+        b1 = 456
+        *b2 = 456
+    }
+    演算子 . は、構造体のメンバ変数でも、ポインタが指し示す構造体のメンバ辺でもアクセスすることができます。
 
-func main() {
-    var a1 int = 123
-    var a2 int = 123
-    fn(a1, &a2)		// a1は値渡し、a2は参照渡し
-    fmt.Println(a1, a2)	// => 123 456
-}
+    a1 := Person{"Tanaka", 26}	// 構造体Personのオブジェクトa1を確保して初期化
+    p1 := &a1			// 構造体a1へのポインタをp1に格納
+    fmt.Println(a1.name)		// メンバ変数には左記のようにアクセス
+    fmt.Println((*p1).name)		// ポインタpの中身(後続体)のメンバ変数には左記のようにアクセス
+    fmt.Println(p1.name)		// ただし、Go言語ではこれを、左記のようにも記述できる
 
-func fn(b1 int, b2 *int) {
-    b1 = 456
-    *b2 = 456
-}
-演算子 . は、構造体のメンバ変数でも、ポインタが指し示す構造体のメンバ辺でもアクセスすることができます。
-
-a1 := Person{"Tanaka", 26}	// 構造体Personのオブジェクトa1を確保して初期化
-p1 := &a1			// 構造体a1へのポインタをp1に格納
-fmt.Println(a1.name)		// メンバ変数には左記のようにアクセス
-fmt.Println((*p1).name)		// ポインタpの中身(後続体)のメンバ変数には左記のようにアクセス
-fmt.Println(p1.name)		// ただし、Go言語ではこれを、左記のようにも記述できる
-領域確保(new)
+<領域確保(new)>
 new() を用いて領域を動的に確保し、その領域へのポインタを得ることができます。確保した領域は参照されなくなった後にでガベージコレクションにより自動的に開放されます。
 
 type Book struct {
@@ -680,6 +688,7 @@ func main() {
         fmt.Println(book.title)
     }
 }
+
 遅延実行(defer)
 「defer 処理」は、関数から戻る直前に処理を遅延実行します。リソースを忘れずに解放する際によく用いられます。
 
@@ -693,7 +702,8 @@ func funcA() {
     for {
         ...
     }
-インポート(import)
+
+<インポート(import)>
 import はパッケージをインポートします。
 
 import "fmt"
@@ -703,7 +713,8 @@ import (
     "os"
     "fmt"
 )
-モジュール(module)
+
+<モジュール(module)>
 モジュール環境で開発を行うには下記の様にします。go mod init を実行するとカレントディレクトリに go.mod ファイルが作成されます。
 
 $ mkdir hello
@@ -749,7 +760,7 @@ import (
     gstr "golang.org/x/example/stringutil"
 )
 
-パッケージ(package)
+<パッケージ(package)>
 自作パッケージの例を下記に示します。
 
 $HOME
@@ -780,7 +791,8 @@ import "local/mypkg"
 
 mypkg.FuncA()		// 呼び出せる
 mypkt.funcB()		// Error
-ワークスペース(workspace)
+
+<ワークスペース(workspace)>
 Go 1.18 からはワークスペース機能がサポートされています。複数のパッケージをワークスペースで管理します。
 
 # ワークスペースを作成する
@@ -822,7 +834,8 @@ package mypkg
 func Hello() string {
     return "Hello world!"
 }
-ゴルーチン(Goroutine)
+
+<ゴルーチン(Goroutine)>
 ゴルーチン(goroutine)はGo言語における並行処理を実現するもので、スレッドよりも高速に並行処理を実現することができます。下記の例では、メインの処理を実行しながら、並行して funcA() ゴルーチンを go により実行しています。
 
 func funcA() {
