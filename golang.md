@@ -1,4 +1,38 @@
-#Go言語とは
+# Contents
+- [Contents](#Contents)
+    - [Go言語とは](#Go言語とは)
+    - [Hello_World](#Hello_World)
+    - [Print/Println/Printf](#Print/Println/Printf)
+    - [変数(var)](#変数(var))
+    - [定数(const)](#定数(const))
+    - [コメント](#コメント)
+    - [行末のセミコロン](#行末のセミコロン)
+    - [型(type)](#型(type))
+    - [型変換](#型変換)
+    - [演算子](#演算子)
+    - [リテラル・値](#リテラル・値)
+    - [エスケープシーケンス](#エスケープシーケンス)
+    - [配列(array)](#配列(array))
+    - [スライス(slice)](#スライス(slice))
+    - [マップ(map)](#マップ(map))
+    - [If文(if)](#If文(if))
+    - [Switch文(switch)](#Switch文(switch))
+    - [For文(for)](#For文(for))
+    - [Goto文(goto)](#Goto文(goto))
+    - [関数(func)](#関数(func))
+    - [構造体(struct)](#構造体(struct))
+    - [インタフェース(interface)](#インタフェース(interface))
+    - [interface{}型](#interface{}型)
+    - [ポインタ(pointer)](#ポインタ(pointer))
+    - [領域確保(new)](#領域確保(new))
+    - [遅延実行(defer)](#遅延実行(defer))
+    - [インポート(import)](#インポート(import))
+    - [モジュール(module)](#モジュール(module))
+    - [パッケージ(package)](#パッケージ(package))
+    - [ワークスペース(workspace)](#ワークスペース(workspace))
+    - [ゴルーチン(Goroutine)](#ゴルーチン(Goroutine))
+
+# Go言語とは
     Google が開発したプログラミング言語です。「Go言語」や「Golang」と表記されます。
     UNIX、B言語(C言語の元)、UTF-8の開発者ケン・トンプソンや、UNIX、Plan 9、UTF-8の開発者ロブ・パイクによって設計されました。
     静的型付け、メモリ安全性、ガベージコレクションを備えるコンパイル言語です。
@@ -6,7 +40,7 @@
     メモリ破壊が無く、並行処理を得意とする、進化したC言語という側面があります。
     Linux、Mac OS X、Windows、Android、iOS で動作します。
 
-#Hello world
+# Hello_World
     プログラムの拡張子は .go とします。プログラムは main パッケージの main 関数から実行されます。
     
     (how to write)
@@ -31,7 +65,7 @@
     //ソースを標準のコーディングスタイルに整形するには gofmt を使用します。標準スタイルでは、インデントはスペースではなくタブ文字を使用します。
         $ gofmt sample.go
 
-#Print・Println・Printf#
+# Print/Println/Printf
     fmt.Print() は引数を文字列として出力します。fmt.Println() は引数の間にスペースを入れ、最後に改行文字 "\n" を出力します。fmt.Printf() は %d (数値) や %s (文字列) などのフォーマットを指定して引数を出力することができます。
 
     (how to write)
@@ -45,7 +79,7 @@
     //Printf() のフォーマットには下記を使用できます。%4d とすると 4桁整数、%04d とすると 0埋め4桁整数で出力します。
         %v(デフォルト形式)、%#v(Go言語表記)、%t(真偽値)、%d(整数)、%s(文字列)、%c(文字)、%f(小数)、%F(小数)、%e(浮動小数点数e)、%E(浮動小数点数E)、%g(%f/%e自動選択)、%b(2進数)、%o(8進数)、%O(0o付き8進数)、%x(16進数)、%X(16進数大文字)、%U(Unicode)、%p(ポインタ)、%q("..."付き文字列)、%T(型表示)、%%(パーセント)
 
-<変数(var)>
+# 変数(var)
     var は 「var 変数名 型名」の形式で変数を定義します。
         (how to write)
         var a1 int
@@ -77,7 +111,7 @@
         (how to write)
         name, age = "Yamada", 26
 
-<定数(const)>
+# 定数(const)
     const は定数を定義します。定数の場合は型名は省略可能で、多くの場合指定しません。
         (how to write)
         const foo = 100
@@ -89,19 +123,19 @@
             baa = 200
         )
 
-<コメント>
+# コメント
     // ... 形式、または、/* ... */ 形式のコメントを書くことができます。コメントはコンパイルの際に無視されます。
         (how to write)
         // ここはコメントです
         /* ここも
         コメントです */
 
-<行末のセミコロン>
+# 行末のセミコロン
     行末にはセミコロン(;)を書きますが、ほとんどの場合省略することができます。セミコロンを書くことで複数の文を1行に記述することができます。
         (how to write)
         num = 123; str = "ABC";
 
-<型(type)>
+# 型(type)
     bool				        真偽値(true or false)
     int8/int16/int32/int64		nビット整数
     uint8/uint16/uint32/uint64	nビット非負整数
@@ -128,13 +162,13 @@
             JstTime string
         )
 
-<型変換>
+# 型変換
     型名() で型変換を行うことができます。
         (how to write)
         var a1 uint16 = 1234
         var a2 uint32 = uint32(a1)
 
-<演算子>
+# 演算子
     x + y		加算 (文字列の連結にも利用)
     x - y		減算
     x * y		乗算
@@ -173,7 +207,7 @@
     ch <- x		chチャネルにxを送信
     x =<- ch	chチャネルからxに受信
 
-<リテラル・値>
+# リテラル・値
     nil		無しを示す特別な値
     true		真偽値の真
     false		真偽値の偽
@@ -189,7 +223,7 @@
     "ABC"		文字列
     'A'		文字(rune)
 
-<エスケープシーケンス>
+# エスケープシーケンス
     文字列や文字の中では下記のエスケープシーケンスを使用することができます。
         \a		ベル(U+0007)
         \b		バックスペース(U+0008)
@@ -205,7 +239,7 @@
         \u30A2		Unicode(U+0000～U+FFFF)
         \U0001F604	Unicode(U+0000～U+10FFFF)
 
-<配列(array)>
+# 配列(array)
     コンパイル時に個数が決まっていて変更不可のものを 配列 と言います。型名の前に [個数] をつけて宣言します。配列のインデックスは 0 からはじまります。途中で個数を変更することはできませんが、メモリ効率や性能の点で優れています。
         (how to write)
         a1 := [3]string{}
@@ -222,7 +256,7 @@
         (how to write)
         a1 := [...]string{"Red", "Green", "Blue"}
 
-<スライス(slice)>
+# スライス(slice)
     メモリ効率や速度は若干落ちますが、個数を変更可能なものを スライス と呼びます。型名の前に [] をつけて宣言します。スライスには append() を用いて要素を追加します。
         (how to write)
         a1 := []string{}			// スライス。個数不定
@@ -243,54 +277,54 @@
         (how to write)
         bufa := make([]byte, 0, 1024)
 
-<マップ(map)>
-    [words]
-        (map)
-            = just a hash table. 
-            The data is arranged into an array of buckets. 
-            Each bucket contains up to 8 key/elem pairs. 
-            The low-order bits of the hash are used to select a bucket. 
-            Each bucket contains a few high-order bits of each hash to distinguish the entries within a single bucket. 
-            If more than 8 keys hash to a bucket, we chain on extra buckets.
-        (hash table)
-            = a data structure used in computer science and programming to implement an associative array. 
-            It is a fundamental data structure that allows you to store and retrieve values based on keys, providing efficient and fast lookups.
-        (length)
-            = represents the number of key-value pairs it contains
+## マップ(map)
+### words
+#### map
+= just a hash table. 
+The data is arranged into an array of buckets. 
+Each bucket contains up to 8 key/elem pairs. 
+The low-order bits of the hash are used to select a bucket. 
+Each bucket contains a few high-order bits of each hash to distinguish the entries within a single bucket. 
+If more than 8 keys hash to a bucket, we chain on extra buckets.
+#### hash table
+= a data structure used in computer science and programming to implement an associative array. 
+It is a fundamental data structure that allows you to store and retrieve values based on keys, providing efficient and fast lookups.
+#### length
+= represents the number of key-value pairs it contains
 
+### What is Map?
+「map[キーの型]値の型」 を用いて連想配列のようなマップを使用することができます。
 
-    「map[キーの型]値の型」 を用いて連想配列のようなマップを使用することができます。
-        (how to write)
-        // マップを定義する
-        a1 := map[string]int{
-            "x": 100,
-            "y": 200,			// 改行する場合はカンマ必須
-        }
+    // マップを定義する
+    a1 := map[string]int{
+        "x": 100,
+        "y": 200,			// 改行する場合はカンマ必須
+    }
 
-        // マップを参照する
-        fmt.Println(a1["x"])
+    // マップを参照する
+    fmt.Println(a1["x"])
 
-        // マップに要素を加える
-        a1["z"] = 300
+    // マップに要素を加える
+    a1["z"] = 300
 
-        // マップの要素を削除する
-        delete(a1, "z")
+    // マップの要素を削除する
+    delete(a1, "z")
 
-        // マップの長さを求める
-        fmt.Println(len(a1))
+    // マップの長さを求める
+    fmt.Println(len(a1))
 
-        // マップに要素が存在するかどうかを調べる
-        _, ok := a1["z"]
-        if ok {
-            fmt.Println("Exist")
-        } else {
-            fmt.Println("Not exist")
-        }
+    // マップに要素が存在するかどうかを調べる
+    _, ok := a1["z"]
+    if ok {
+        fmt.Println("Exist")
+    } else {
+        fmt.Println("Not exist")
+    }
 
-        // マップをループ処理する
-        for key, value := range a1 {
-            fmt.Printf("%s=%d\n", key, value)
-        }
+    // マップをループ処理する
+    for key, value := range a1 {
+        fmt.Printf("%s=%d\n", key, value)
+    }
 
 <If文(if)>
     「if 条件 { 処理 }」 は条件が真の時のみ処理を実行します。条件を (...) で囲む必要はありません。{ ... } の中括弧は必須です。
