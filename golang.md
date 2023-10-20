@@ -927,6 +927,7 @@ Go 1.18 からはワークスペース機能がサポートされています。
 # ゴルーチン(Goroutine)
 ゴルーチン(goroutine)はGo言語における並行処理を実現するもので、スレッドよりも高速に並行処理を実現することができます。下記の例では、メインの処理を実行しながら、並行して funcA() ゴルーチンを go により実行しています。
 
+```go
 func funcA() {
     for i := 0; i < 10; i++ {
         fmt.Print("A")
@@ -941,8 +942,9 @@ func main() {
         time.Sleep(20 * time.Millisecond)
     }
 }
+```
 下記の例ではチャネルを用いてゴルーチンの終了を待ち合わせる例です。chan はチャネルを生成します。<- はチャネルにメッセージを送受信します。
-
+```go
 func funcA(chA chan <- string) {
     time.Sleep(3 * time.Second)
     chA <- "Finished"		// チャネルにメッセージを送信する
@@ -955,8 +957,9 @@ func main() {
     msg := <- chA		// チャネルからメッセージを受信する
     fmt.Println(msg)
 }
+```
 次の例では select を用いて、ゴルーチン funcA() と funcB() 双方の待ち合わせを行います。
-
+```go
 func funcA(chA chan <- string) {
     time.Sleep(1 * time.Second)
     chA <- "funcA Finished"
@@ -990,3 +993,4 @@ func main() {
         }
     }
 }
+```
