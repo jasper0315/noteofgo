@@ -516,3 +516,25 @@ double d1 = 12E4d;
 System.out.println(f1);
 System.out.println(d1);
 ```
+
+<h2>Java Boolean Data Types</h2>
+<h3>Boolean Types</h3>
+Very often in programming, you will need a data type that can only have one of two values, like:
+<ul>
+<li>YES / NO</li>
+<li>ON / OFF</li>
+<li>TRUE / FALSE</li>
+</ul>
+For this, Java has a boolean data type, which can only take the values true or false:
+
+Example
+```java
+boolean isJavaFun = true;
+boolean isFishTasty = false;
+System.out.println(isJavaFun);     // Outputs true
+System.out.println(isFishTasty);   // Outputs false
+```
+
+    Boolean values are mostly used for conditional testing.
+
+    You will learn much more about booleans and conditions later in this tutorial.
