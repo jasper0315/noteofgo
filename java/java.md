@@ -538,3 +538,59 @@ System.out.println(isFishTasty);   // Outputs false
     Boolean values are mostly used for conditional testing.
 
     You will learn much more about booleans and conditions later in this tutorial.
+
+<h2>Java Characters</h2>
+<h3>Characters</h3>
+
+The char data type is used to store a <strong>single</strong> character. The character must be surrounded by single quotes, like 'A' or 'c':
+
+Example
+```java
+char myGrade = 'B';
+System.out.println(myGrade);
+```
+
+Alternatively, if you are familiar with ASCII values, you can use those to display certain characters:
+
+Example
+```java
+char myVar1 = 65, myVar2 = 66, myVar3 = 67;
+System.out.println(myVar1);
+System.out.println(myVar2);
+System.out.println(myVar3);
+```
+    Note that you can remember the knowledge below for reading the code above.
+    ・ 65 = A
+    ・ 66 = B
+    ・ 67 = C
+
+Tip: A list of all ASCII values can be found in our ASCII Table Reference.
+
+<h3>Strings</h3>
+The String data type is used to store a sequence of characters (text). String values must be surrounded by double quotes:
+
+Example
+```java
+String greeting = "Hello World";
+System.out.println(greeting);
+```
+
+The String type is so much used and integrated in Java, that some call it "the special <strong>ninth</strong> type".
+
+A String in Java is actually a <strong>non-primitive</strong> data type, because it refers to an object. The String object has methods that are used to perform certain operations on strings. <strong>Don't worry if you don't understand the term "object" just yet.</strong> We will learn more about strings and objects in a later chapter.
+
+<h2>Non-Primitive Data Types</h2>
+Non-primitive data types are called reference types because they refer to objects.
+
+The main difference between primitive and non-primitive data types are:
+<ul>
+<li>Primitive types are predefined (already defined) in Java. Non-primitive types are created by the programmer and is not defined by Java (except for String).</li>
+<li>Non-primitive types can be used to call methods to perform certain operations, while primitive types cannot.</li>
+<li>A primitive type has always a value, while non-primitive types can be null.</li>
+<li>A primitive type starts with a lowercase letter, while non-primitive types starts with an uppercase letter.</li>
+</ul>
+Examples of non-primitive types are Strings, Arrays, Classes, Interface, etc. You will learn more about these in a later chapter.
+
+
+<h1 id=sec6>Java Type Casting</h1>
+<h2>Java Type Casting</h2>
