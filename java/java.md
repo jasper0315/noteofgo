@@ -1,7 +1,9 @@
+<link rel="stylesheet" type="text/css" href="styles.css">
 <h1> Java Tutorials</h1> 
 
 <h1>Contents</h1>
 <ol>
+    <li><a href="#sec0">Words</a></li>
     <li><a href="#sec1">Java Syntax</a></li>
     <li><a href="#sec2">Java Output</a></li>
     <li><a href="#sec3">Java Comments</a></li>
@@ -18,8 +20,18 @@
     <li><a href="#sec14">Java For Loop</a></li>
     <li><a href="#sec15">Java Break/Continue</a></li>
     <li><a href="#sec16">Java Arrays</a></li>
-
 </ol>
+
+
+<h1 id=sec0>Words</h1>
+<ul>
+<li><strong>access modifier :</strong><br>is a keyword in many programming languages, including Java, that <span class="red-text"><u>is used to specify the visibility and accessibility of classes, methods, variables, and other class members.</u></span> Access modifiers control which parts of your code can access or modify a particular class member. They help you define the level of encapsulation and security in your program. In Java, there are four main access modifiers</li>
+<li><strong>public :</strong><br>is an access modifier in Java that specifies the visibility and accessibility of a class, method, or variable. When a member is declared as public, <span class="red-text"><u>it can be accessed from anywhere in the code, including from other classes and packages.</u></span></li>
+<li><strong>protected :</strong><br><span class="red-text"><u> Members marked as protected are accessible within the same package and also by subclasses, regardless of whether they are in the same package or not.</u></span> This access modifier is often used for allowing controlled access to class members for subclasses.</li>
+<li><strong>default (no modifier) :</strong><br> If no access modifier is specified, the default access modifier is applied. <span class="red-text"><u>Members with default access are accessible only within the same package. They are not accessible outside the package,</u></span> even if the class is part of a different package.</li>
+<li><strong>private :</strong><br> <span class="red-text"><u>Members marked as private are accessible only within the same class.</u></span> They are not accessible from outside the class. This is the most restrictive access modifier and provides the highest level of encapsulation.</li>
+</ul>
+
 
 <h1 id="sec1">Java Syntax</h1>
 <p>
@@ -171,6 +183,7 @@ System.out.println("Hello World");
 
     Single or multi-line comments?
     It is up to you which you want to use. Normally, we use // for short comments, and /* */ for longer.
+
 
 <h1 id=sec4>Java Variables</h1>
 <h2>Variables</h2>
@@ -594,3 +607,45 @@ Examples of non-primitive types are Strings, Arrays, Classes, Interface, etc. Yo
 
 <h1 id=sec6>Java Type Casting</h1>
 <h2>Java Type Casting</h2>
+Type casting is when you assign a value of one primitive data type to another type.
+
+In Java, there are two types of casting:
+<ul>
+<li><strong>Widening Casting</strong> (automatically) - converting a smaller type to a larger type size<br>
+byte -> short -> char -> int -> long -> float -> double</li>
+
+<li><strong>Narrowing Casting</strong> (manually) - converting a larger type to a smaller size type<br>
+double -> float -> long -> int -> char -> short -> byte</li>
+</ul>
+
+<h2>Widening Casting</h2>
+Widening casting is done automatically when passing a smaller size type to a larger size type:
+
+Example
+```java
+public class Main {
+  public static void main(String[] args) {
+    int myInt = 9;
+    double myDouble = myInt; // Automatic casting: int to double
+
+    System.out.println(myInt);      // Outputs 9
+    System.out.println(myDouble);   // Outputs 9.0
+  }
+}
+```
+
+<h2>Narrowing Casting</h2>
+Narrowing casting must be done manually by placing the type in parentheses in front of the value:
+
+Example
+```java
+public class Main {
+  public static void main(String[] args) {
+    double myDouble = 9.78d;
+    int myInt = (int) myDouble; // Manual casting: double to int
+
+    System.out.println(myDouble);   // Outputs 9.78
+    System.out.println(myInt);      // Outputs 9
+  }
+}
+```
