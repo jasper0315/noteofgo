@@ -6,3 +6,23 @@
     color: blue;
   }
   
+  .java-code {
+    font-family: "Consolas", "Courier New", monospace;
+    background-color: #2d2d2d;
+    color: #c7c7c7;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    overflow: auto;
+  }
+  
+  .java-code code {
+    display: block;
+  }
+
+  .box {
+    border: 2px solid #333; /* ボーダーの幅、スタイル、色を設定 */
+    padding: 10px; /* ボーダーから内部コンテンツまでの余白 */
+    margin: 10px; /* 要素と周囲の要素間の余白 */
+    width: 200px; /* 要素の幅 */
+  }
