@@ -448,6 +448,11 @@ There are eight primitive data types in Java:
     <td>Stores a single character/letter or ASCII values</td>
   </tr>
 </table>
+note that:
+<ul>
+  <li><strong>int</strong><br> = an abbreviation of integer</li>
+  <li><strong>char</strong><br>= character like A, B or C</li>
+</ul>
 
 <h2>Java Numbers</h2>
 <h3>Numbers</h3>
@@ -656,26 +661,32 @@ public class Main {
 
 Operators are used to perform operations on variables and values.
 
-In the example below, we use the + operator to add together two values:
+In the example below, we use the + <strong>operator</strong> to add together two values:
 
-ExampleGet your own Java Server
+Example
+```java
 int x = 100 + 50;
+```
 
 Although the + operator is often used to add together two values, like in the example above, it can also be used to add together a variable and a value, or a variable and another variable:
 
 Example
+```java
 int sum1 = 100 + 50;        // 150 (100 + 50)
 int sum2 = sum1 + 250;      // 400 (150 + 250)
 int sum3 = sum2 + sum2;     // 800 (400 + 400)
+```
 
 Java divides the operators into the following groups:
+<ul>
+  <li>Arithmetic operators</li>
+  <li>Assignment operators</li>
+  <li>Comparison operators</li>
+  <li>Logical operators</li>
+  <li>Bitwise operators</li>
+</ul>
 
-Arithmetic operators
-Assignment operators
-Comparison operators
-Logical operators
-Bitwise operators
-Arithmetic Operators
+<h2>Arithmetic Operators</h2>
 Arithmetic operators are used to perform common mathematical operations.
 
 <table>
@@ -697,9 +708,203 @@ Arithmetic operators are used to perform common mathematical operations.
   <td>Subtracts one value from another</td>
   <td>x - y</td>
 </tr>	
-*	Multiplication	Multiplies two values	x * y	
-/	Division	Divides one value by another	x / y	
-%	Modulus	Returns the division remainder	x % y	
-++	Increment	Increases the value of a variable by 1	++x	
---	Decrement	Decreases the value of a variable by 1	--x
+  <td>*</td>
+  <td>Multiplication</td>
+  <td>Multiplies two values</td> 
+  <td>x * y</td>
+</tr>
+<tr>
+  <td>/</td>
+  <td>Division</td>
+  <td>Divides one value by another</td>
+  <td>x / y</td>
+</tr>
+<tr>
+  <td>%</td>
+  <td>Modulus</td>
+  <td>Returns the division remainder</td>
+  <td>x % y</td>
+</tr>
+<tr>
+  <td>++</td>
+  <td>Increment</td>
+  <td>Increases the value of a variable by 1</td>
+  <td>++x</td>
+</tr>
+<tr>
+  <td>--</td>
+  <td>Decrement</td>
+  <td>Decreases the value of a variable by 1</td>
+  <td>--x</td>
+</tr>
+</table>
+
+<h2>Java Assignment Operators</h2>
+Assignment operators are used to assign values to variables.
+
+In the example below, we use the assignment operator (=) to assign the value 10 to a variable called x:
+
+Example
+```java
+int x = 10;
+```
+
+The addition assignment operator (+=) adds a value to a variable:
+
+Example
+```java
+int x = 10;
+x += 5;
+```
+
+A list of all assignment operators:
+<table>
+<tr>
+  <th>Operator</th>
+  <th>Example</th>
+  <th>Same As</th>
+</tr>
+<tr>
+  <td>=</td>
+  <td>x = 5</td>
+  <td>x = 5</td>
+</tr>
+<tr>
+  <td>+=</td>
+  <td>x += 3</td>
+  <td>x = x + 3</td>
+</tr>
+<tr>
+  <td>-=</td>
+  <td>x -= 3</td>
+  <td>x = x - 3</td>
+</tr>
+<tr>
+  <td>*=</td>
+  <td>x *= 3</td>
+  <td>x = x * 3</td>
+</tr>
+<tr>
+  <td>/=</td>
+  <td>x /= 3</td>
+  <td>x = x / 3</td>
+</tr>
+<tr>
+  <td>%=</td>
+  <td>x %= 3</td>
+  <td>x = x % 3</td>
+</tr>
+<tr>
+  <td>&=</td>
+  <td>x &= 3</td>
+  <td>x = x & 3</td>
+</tr>
+<tr>
+  <td>|=</td>
+  <td>x |= 3</td>
+  <td>x = x | 3</td>
+</tr>
+<tr>
+  <td>^=</td>
+  <td>x ^= 3</td>
+  <td>x = x ^ 3</td>
+</tr>
+<tr>
+  <td>>>=</td>
+  <td>x >>= 3</td>
+  <td>x = x >> 3</td>
+</tr>
+<tr>
+  <td><<=</td>
+  <td>x <<= 3</td>
+  <td>x = x << 3</td>
+</tr>
+</table>
+note that:
+<ul>
+  <li><strong>"|="</strong><br>= <span class="red-text"><u>performing a bitwise OR operation between the variable x and the integer value 3,</u></span> and then assigning the result back to the variable x. </li>
+  <li><strong>Bitwise</strong><br>= (computing)treating a value as a series of bits rather than a numerical quantity.</li>
+  <li><strong>A bitwise OR operators</strong><br>= <span class="red-text"><u>a fundamental bitwise operation used to combine the individual bits of two binary numbers.</u></span> The OR operation takes two binary values (or bits) and produces a result in which a particular bit in the output is set to 1 if at least one of the corresponding bits in the input values is 1. If you wanna know more specifically, you can chech <a href="https://www.upgrad.com/blog/what-is-bitwise-operator-in-java-and-its-classification-with-examples/">this article.</a></strong></u></li>
+</ul>
+
+<h2>Java Comparison Operators</h2>
+Comparison operators are used to compare two values (or variables). This is important in programming, because it helps us to find answers and make decisions.
+
+The return value of a comparison is either true or false. These values are known as Boolean values, and you will learn more about them in the Booleans and If..Else chapter.
+
+In the following example, we use the greater than operator (>) to find out if 5 is <strong>greater than</strong> 3:
+
+Example
+```java
+int x = 5;
+int y = 3;
+System.out.println(x > y); // returns true, because 5 is higher than 3
+```
+
+<table>
+<tr>
+  <th>Operator</th>
+  <th>Name</th>
+  <th>Example</th>
+</tr>
+<tr>
+  <td>==</td>
+  <td>Equal to</td>
+  <td>x == y</td>
+</tr>
+<tr>
+  <td>!=</td>
+  <td>Not equal</td>
+  <td>x != y</td>
+</tr>
+<tr>
+  <td>></td>
+  <td>Greater than</td>
+  <td>x > y</td>
+</tr>
+<tr>
+  <td><</td>
+  <td>Less than</td>
+  <td>x < y</td>
+</tr>
+<tr>
+  <td>>=</td>
+  <td>Greater than or equal to</td>
+  <td>x >= y</td>
+</tr>
+<tr>
+  <td><=</td>
+  <td>Less than or equal to</td>
+  <td>x <= y</td>
+</tr>
+</table>
+
+<h2>Java Logical Operators</h2>
+You can also test for true or false values with logical operators.<br>Logical operators are used to determine the logic between variables or values:
+
+<table>
+<tr>
+  <th>Operator</th>
+  <th>Name</th>
+  <th>Description</th>
+  <th>Example</th>
+</tr>
+<tr>
+  <td>&&</td>
+  <td>Logical and</td>
+  <td>Returns true if both statements are true</td>
+  <td>x < 5 &&  x < 10</td>
+</tr>
+<tr>
+  <td>||</td>
+  <td>Logical or</td>
+  <td>Returns true if one of the statements is true</td>
+  <td>x < 5 || x < 4</td>
+</tr>
+<tr>
+  <td>!</td>
+  <td>Logical not</td>
+  <td>Reverse the result, returns false if the result is true</td>
+  <td>!(x < 5 && x < 10)</td>
+</tr>
 </table>
