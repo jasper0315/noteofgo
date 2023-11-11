@@ -981,3 +981,114 @@ String firstName = "John ";
 String lastName = "Doe";
 System.out.println(firstName.concat(lastName));
 ```
+
+<h2>Java Numbers and Strings</h2>
+<h3>Adding Numbers and Strings</h3>
+
+If you add two numbers, the result will be a number:
+
+Example
+```java
+int x = 10;
+int y = 20;
+int z = x + y;  // z will be 30 (an integer/number)
+```
+
+If you add two strings, the result will be a string concatenation:
+
+Example
+```java
+String x = "10";
+String y = "20";
+String z = x + y;  // z will be 1020 (a String)
+```
+
+If you add a number and a string, the result will be a string concatenation:
+
+Example
+```java
+String x = "10";
+int y = 20;
+String z = x + y;  // z will be 1020 (a String)
+```
+
+<h2>Java Special Characters</h2>
+<h3>Strings - Special Characters</h3>
+Because strings must be written within quotes, Java will misunderstand this string, and generate an error:
+
+```java
+String txt = "We are the so-called "Vikings" from the north.";
+```
+The solution to avoid this problem, is to use the <strong>backslash escape character.</strong>
+
+The backslash (\) escape character turns special characters into string characters:
+<table>
+<tr>
+  <th>Escape character</th>
+  <th>Result</th>
+  <th>Description</th>
+</tr>
+<tr>
+  <td>\'</td>
+  <td>'</td>
+  <td>Single quote</td>
+</tr>
+<tr>
+  <td>\"</td>
+  <td>"</td>
+  <td>Double quote</td>
+</tr>
+<tr>
+  <td>\\</td>
+  <td>\</td>
+  <td>Backslash</td>
+</tr>
+</table>
+The sequence \"  inserts a double quote in a string:
+
+Example
+```java
+String txt = "We are the so-called \"Vikings\" from the north.";
+```
+
+The sequence \'  inserts a single quote in a string:
+
+Example
+```java
+String txt = "It\'s alright.";
+```
+
+The sequence \\  inserts a single backslash in a string:
+
+Example
+```java
+String txt = "The character \\ is called backslash.";
+```
+
+Other common escape sequences that are valid in Java are:
+<table>
+<tr>
+  <th>Code</th>
+  <th>Result</th>
+</tr>
+<tr>
+  <td>\n</td>
+  <td>New Line</td>
+</tr>
+<tr>
+  <td>\r</td>
+  <td>Carriage Return</td>
+</tr>
+<tr>
+  <td>\t</td>
+  <td>Tab</td>
+</tr>
+<tr>
+  <td>\b</td>
+  <td>Backspace</td>
+</tr>
+<tr>
+  <td>\f</td>
+  <td>Form Feed</td>
+</tr>
+</table>
