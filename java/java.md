@@ -1092,3 +1092,57 @@ Other common escape sequences that are valid in Java are:
   <td>Form Feed</td>
 </tr>
 </table>
+
+
+<h1 id=sec9>Java Math</h1>
+The Java Math class has many methods that allows you to perform mathematical tasks on numbers.
+
+<h2>Math.max(x,y)</h2>
+The Math.max(x,y) method can be used to find the highest value of x and y:
+
+Example
+```java
+Math.max(5, 10);
+```
+
+<h2>Math.min(x,y)</h2>
+The Math.min(x,y) method can be used to find the lowest value of x and y:
+
+Example
+```java
+Math.min(5, 10);
+```
+
+<h2>Math.sqrt(x)</h2>
+The Math.sqrt(x) method returns the square root of x:
+
+Example
+```java
+Math.sqrt(64);
+```
+
+<h2>Math.abs(x)</h2>
+The Math.abs(x) method returns the absolute (positive) value of x:
+
+Example
+```java
+Math.abs(-4.7);
+```
+
+<h2>Random Numbers</h2>
+Math.random() returns a random number between 0.0 (inclusive), and 1.0 (exclusive):
+
+Example
+```java
+Math.random();
+```
+
+To get more control over the random number, for example, if you only want a random number between 0 and 100, you can use the following formula:
+
+Example
+```java
+int randomNum = (int)(Math.random() * 101);  // 0 to 100
+```
+
+Complete Math Reference
+For a complete reference of Math methods, go to our <a href="https://www.w3schools.com/java/java_ref_math.asp">Java Math Methods Reference</a>.
