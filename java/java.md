@@ -1384,13 +1384,14 @@ System.out.println(result);
 ```
 
 
-<h2>Java Switch</h2>
-<h3>Java Switch Statements</h3>
-Instead of writing many if..else statements, you can use the switch statement.
+<h1 id=sec12>Java Switch</h1>
+<h2>Java Switch Statements</h2>
+Instead of writing <strong>many</strong> if..else statements, you can use the switch statement.
 
 The switch statement selects one of many code blocks to be executed:
 
-SyntaxGet your own Java Server
+Syntax
+```java
 switch(expression) {
   case x:
     // code block
@@ -1401,15 +1402,18 @@ switch(expression) {
   default:
     // code block
 }
+```
 This is how it works:
-
-The switch expression is evaluated once.
-The value of the expression is compared with the values of each case.
-If there is a match, the associated block of code is executed.
-The break and default keywords are optional, and will be described later in this chapter
+<ul>
+  <li>The switch expression is evaluated once.</li>
+  <li>The value of the expression is compared with the values of each case.</li>
+  <li>If there is a match, the associated block of code is executed.</li>
+  <li>The break and default keywords are optional, and will be described later in this chapter</li>
+</ul>
 The example below uses the weekday number to calculate the weekday name:
 
 Example
+```java
 int day = 4;
 switch (day) {
   case 1:
@@ -1435,20 +1439,22 @@ switch (day) {
     break;
 }
 // Outputs "Thursday" (day 4)
+```
 
-The break Keyword
+<h2>The break Keyword</h2>
 When Java reaches a break keyword, it breaks out of the switch block.
 
 This will stop the execution of more code and case testing inside the block.
 
 When a match is found, and the job is done, it's time for a break. There is no need for more testing.
 
-A break can save a lot of execution time because it "ignores" the execution of all the rest of the code in the switch block.
+    A break can save a lot of execution time because it "ignores" the execution of all the rest of the code in the switch block.
 
-The default Keyword
+<h2>The default Keyword</h2>
 The default keyword specifies some code to run if there is no case match:
 
 Example
+```java
 int day = 4;
 switch (day) {
   case 6:
@@ -1461,6 +1467,65 @@ switch (day) {
     System.out.println("Looking forward to the Weekend");
 }
 // Outputs "Looking forward to the Weekend"
+```
  
 
 Note that if the default statement is used as the last statement in a switch block, it does not need a break.
+
+
+<h1 id=sec13>Java While Loop</h1>
+<h2>Loops</h2>
+
+Loops can execute a block of code as long as a specified condition is reached.
+
+Loops are handy because they save time, reduce errors, and they make code more readable.
+
+<h2>Java While Loop</h2>
+The while loop loops through a block of code as long as a specified condition is true:
+
+Syntax
+```java
+while (condition) {
+  // code block to be executed
+}
+```
+In the example below, the code in the loop will run, over and over again, as long as a variable (i) is less than 5:
+
+Example
+```java
+int i = 0;
+while (i < 5) {
+  System.out.println(i);
+  i++;
+}
+```
+
+    Note: Do not forget to increase the variable used in the condition, otherwise the loop will never end!
+
+<h2>The Do/While Loop</h2>
+The do/while loop is a variant of the while loop. This loop will execute the code block once, before checking if the condition is true, then it will repeat the loop as long as the condition is true.
+
+Syntax
+```java
+do {
+  // code block to be executed
+}
+while (condition);
+```
+The example below uses a do/while loop. The loop will always be executed at least once, even if the condition is false, because the code block is executed before the condition is tested:
+
+Example
+```java
+int i = 0;
+do {
+  System.out.println(i);
+  i++;
+}
+while (i < 5);
+```
+
+    Do not forget to increase the variable used in the condition, otherwise the loop will never end!
+
+
+<h1 id=sec14>Java For Loop</h1>
+<h2>Java For Loop</h2>
