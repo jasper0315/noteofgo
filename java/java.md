@@ -1608,3 +1608,59 @@ for (String i : cars) {
 ```
 
 Note: Don't worry if you don't understand the example above. You will learn more about Arrays in the <a href=https://www.w3schools.com/java/java_arrays.asp>Java Arrays chapter</a>.
+
+
+<h1 id=sec15>Java Break and Continue</h1>
+<h2>Java Break</h2>
+You have already seen the break statement used in an earlier chapter of this tutorial. It was used to "jump out" of a switch statement.
+
+The break statement can also be used to jump out of a <strong>loop</strong>.
+
+This example stops the loop when i is equal to 4:
+
+Example
+for (int i = 0; i < 10; i++) {
+  if (i == 4) {
+    break;
+  }
+  System.out.println(i);
+}
+
+
+Java Continue
+The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+
+This example skips the value of 4:
+
+Example
+for (int i = 0; i < 10; i++) {
+  if (i == 4) {
+    continue;
+  }
+  System.out.println(i);
+}
+
+Break and Continue in While Loop
+You can also use break and continue in while loops:
+
+Break Example
+int i = 0;
+while (i < 10) {
+  System.out.println(i);
+  i++;
+  if (i == 4) {
+    break;
+  }
+}
+ 
+
+Continue Example
+int i = 0;
+while (i < 10) {
+  if (i == 4) {
+    i++;
+    continue;
+  }
+  System.out.println(i);
+  i++;
+}
