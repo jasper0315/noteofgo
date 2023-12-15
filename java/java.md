@@ -31,6 +31,7 @@
 <li><strong>default (no modifier) :</strong><br> If no access modifier is specified, the default access modifier is applied. <span class="red-text"><u>Members with default access are accessible only within the same package. They are not accessible outside the package,</u></span> even if the class is part of a different package.</li>
 <li><strong>private :</strong><br> <span class="red-text"><u>Members marked as private are accessible only within the same class.</u></span> They are not accessible from outside the class. This is the most restrictive access modifier and provides the highest level of encapsulation.</li>
 <li><strong>Object</strong><br> is an instance of a class. A class is a blueprint or template that defines the attributes (data) and behaviors (methods) that the objects of that class will have. <span class="red-text"><u>Objects are created based on these class definitions.</u></span></li>
+<li><strong>Square brackets []</strong><br> are used for <span class="red-text"><u>declaration of arrays and for selection of array elements.</u></span></li>
 </ul>
 
 
@@ -1619,31 +1620,36 @@ The break statement can also be used to jump out of a <strong>loop</strong>.
 This example stops the loop when i is equal to 4:
 
 Example
+```java
 for (int i = 0; i < 10; i++) {
   if (i == 4) {
     break;
   }
   System.out.println(i);
 }
+```
 
 
-Java Continue
+<h2>Java Continue</h2>
 The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
 
 This example skips the value of 4:
 
 Example
+```java
 for (int i = 0; i < 10; i++) {
   if (i == 4) {
     continue;
   }
   System.out.println(i);
 }
+```
 
-Break and Continue in While Loop
+<h2> Break and Continue in While Loop</h2>
 You can also use break and continue in while loops:
 
 Break Example
+```java
 int i = 0;
 while (i < 10) {
   System.out.println(i);
@@ -1652,9 +1658,11 @@ while (i < 10) {
     break;
   }
 }
+```
  
 
 Continue Example
+```java
 int i = 0;
 while (i < 10) {
   if (i == 4) {
@@ -1664,3 +1672,99 @@ while (i < 10) {
   System.out.println(i);
   i++;
 }
+```
+
+<h1 id=sec16>Java Arrays</h1>
+<h2>Arrays</h2>
+<h3>Java Arrays</h3>
+Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.
+
+To declare an array, define the variable type with <strong>square brackets</strong>:
+
+```java
+String[] cars;
+```
+We have now declared a variable that holds an array of strings. To insert values to it, you can place the values in a comma-separated list, inside curly braces:
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+```
+To create an array of integers, you could write:
+```java
+int[] myNum = {10, 20, 30, 40};
+```
+
+<h3> Access the Elements of an Array</h3>
+You can access an array element by referring to the index number.
+
+This statement accesses the value of the first element in cars:
+
+Example
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+System.out.println(cars[0]);
+// Outputs Volvo
+```
+
+Note: Array indexes start with 0: [0] is the first element. [1] is the second element, etc.
+
+<h3>Change an Array Element</h3>
+To change the value of a specific element, refer to the index number:
+
+Example
+```java
+cars[0] = "Opel";
+```
+Example
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+cars[0] = "Opel";
+System.out.println(cars[0]);
+// Now outputs Opel instead of Volvo
+```
+
+<h3> Array Length</h3>
+To find out how many elements an array has, use the length property:
+
+Example
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+System.out.println(cars.length);
+// Outputs 4
+```
+
+<h2> Loop Through an Array</h2>
+You can loop through the array elements with the for loop, and use the length property to specify how many times the loop should run.
+
+The following example outputs all elements in the <strong>cars</strong> array:
+
+Example
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+for (int i = 0; i < cars.length; i++) {
+  System.out.println(cars[i]);
+}
+```
+
+<h3> Loop Through an Array with For-Each</h3>
+There is also a "<strong>for-each</strong>" loop, which is used exclusively to loop through elements in arrays:
+
+Syntax
+```java
+for (type variable : arrayname) {
+  ...
+}
+```
+The following example outputs all elements in the cars array, using a "for-each" loop:
+
+Example
+```java
+String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+for (String i : cars) {
+  System.out.println(i);
+}
+```
+
+The example above can be read like this: <strong>for each</strong> String element (called <strong>i</strong> - as in <strong>i</strong>ndex) in <strong>cars</strong>, print out the value of <strong>i</strong>.
+
+If you compare the for loop and <strong>for-each</strong> loop, you will see that the <strong>for-each</strong> method is easier to write, it does not require a counter (using the length property), and it is more readable.
+
